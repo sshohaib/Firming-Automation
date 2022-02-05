@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "841342322570",
+    "firebase_url": "https://farmware-4ee04.firebaseio.com",
+    "project_id": "farmware-4ee04",
+    "storage_bucket": "farmware-4ee04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841342322570:android:6f5ac1d26afce01e",
+        "android_client_info": {
+          "package_name": "com.example.farmware"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841342322570-v5m72kglppa2evkatqlsfvemq3pb9n8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9lBSAvJNL_w4SIdsUF5IuVjPX4uHnn0M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

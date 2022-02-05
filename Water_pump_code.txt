@@ -1,0 +1,117 @@
+#include<reg51.h>
+#define lcd P1
+sbit rs=P3^6;
+sbit e=P3^7;
+
+sbit mot=P0^7;
+
+sbit low=P0^0;
+sbit mid=P0^1;
+sbit high=P0^2;
+
+void delay (int d)
+{
+	unsigned char i;
+	for(;d>0;d--)
+	{
+		for(i=250;i>0;i--);
+		for(i=248;i>0;i--);
+	}
+}
+void cmd (unsigned char c)
+{
+	lcd=c;
+	rs=0;
+	e=1;
+	delay(5);
+	e=0;
+}
+void display (unsigned char c)
+{
+	lcd=c;
+	rs=1;
+	e=1;
+	delay(5);
+	e=0;
+}
+void string (char *p)
+{
+	while(*p)
+	{
+		display(*p++);
+	}
+}
+void init (void)
+{
+	cmd(0x38);
+	cmd(0x0c);
+	cmd(0x01);
+	cmd(0x80);
+}
+void main()
+{
+	char lowp=0,midp=0,highp=0,ctrl=0;
+	P0=0x00;
+  init();
+	
+	/*string("  Electronics  ");
+	cmd(0xc0);
+	string("      Hub      ");
+	delay(3000);*/
+	
+	cmd(0x80);
+	string("  Water Level   ");
+	cmd(0xc0);
+	string("   controller   ");
+	delay(1000);
+	
+	cmd(0x80);
+	string("Level :         ");
+	cmd(0xc0);
+	string("motor :         ");
+	if(low==0)
+	{
+		mot=1;
+	}
+  while(1)
+	{
+		if(low!=lowp)//--------1
+		{
+			cmd(0x88);
+			string("LOW   ");
+			cmd(0xc8);
+			string("ON ");
+			mot=1;
+			lowp=low;
+			ctrl=0;highp=0;
+			//delay(1000);
+		}
+		else if(mid!=midp)
+		{
+			cmd(0x88);
+			string("MEDIUM");
+			midp=mid;
+		}
+		else if((high!=highp)&& ctrl==0) 
+		{
+			cmd(0x88);
+			string("HIGH  ");
+			cmd(0xc8);
+			string("OFF");
+			mot=0;
+			highp=high;
+			ctrl=1;
+			//delay(100);
+		}
+	}
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
